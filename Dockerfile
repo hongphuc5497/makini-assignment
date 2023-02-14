@@ -1,0 +1,16 @@
+# syntax=docker/dockerfile:1
+
+FROM node:18.14.0-alpine
+
+# Improve alpine container
+RUN apk add --no-cache libc6-compat
+
+WORKDIR /app
+
+COPY package.json yarn.lock ./
+
+RUN yarn install --frozen-lockfile
+
+COPY . .
+
+CMD ['yarn', 'dev']

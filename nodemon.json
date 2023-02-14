@@ -1,0 +1,8 @@
+{
+	"legacyWatch": true,
+	"restartable": "rs",
+	"verbose": true,
+	"delay": 2000,
+	"ignore": ["test/*", "logs/*"],
+	"ext": ".js, .json, .yml"
+}
