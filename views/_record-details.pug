@@ -1,0 +1,11 @@
+mixin recordDetails(fields)
+  ul
+    each val, key in fields
+      - const isArray = Array.isArray(val)
+      if isArray
+        li= key
+          ul
+            each child in val
+              li= child
+      else
+        li= key + ': ' + val

@@ -1,0 +1,8 @@
+extends _layout
+
+include _record-details
+
+block content
+  h3 Table: #{tableName}
+  h2 Record details
+  +recordDetails(record.fields)

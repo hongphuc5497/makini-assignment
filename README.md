@@ -72,3 +72,21 @@ Tables
   - internative_interval_description
   - service_group
   - **model** -> `model`
+
+---
+
+## TODO
+
+- Get collections from Airtable API - DONE
+
+- Create simple UI with endpoints according to 4 base tables
+
+  - Endpoints:
+
+    - `http://localhost:4000/:tableName` -> Accepted values: ['models', 'model_model', 'drawings', 'services']
+
+    - `http://localhost:4000/:tableName/:recordId`
+
+  - Implement caching for each individual table
+
+- ...

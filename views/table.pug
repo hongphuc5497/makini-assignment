@@ -1,0 +1,14 @@
+extends _layout
+
+include _record-details
+
+block content
+  h2 Table: #{tableName}
+  br
+  ul
+    for record in records
+      li ID: #{record.id}
+        ul
+          li createdTime: #{record.createdTime}
+          li fields
+          +recordDetails(record.fields)
