@@ -1,0 +1,10 @@
+extends _layout
+
+block content
+  ul
+    for item in drawings
+      li Drawing Item: #{item.name}
+        ul
+          for model_model in item.model_model
+            li
+              a(href="")= model_model

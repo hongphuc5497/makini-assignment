@@ -3,7 +3,7 @@
 // Module dependencies
 const app = require('../index');
 const http = require('http');
-const debug = require('debuglog')('nodejs-cache-circle-ci');
+const debug = require('debug')('nodejs-cache-circle-ci');
 const redisClient = require('../redisClient');
 
 redisClient.connect().then(() => {

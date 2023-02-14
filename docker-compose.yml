@@ -2,12 +2,61 @@ version: '3'
 
 services:
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: airtable-ser
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      REDIS_URL: redis://redis:6379
     ports:
-      - "8080:8080"
+      - 4000:4000
+    expose:
+      - 4000
+    command: [ "yarn", "start" ]
+    tty: true
+    stdin_open: true
+    depends_on:
+      - redis
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    networks:
+      - airtable-ser-network
+
   redis:
     image: redis:7.0-alpine
-    container_name: airtable-service__redis
+    container_name: airtable-ser__redis
+    restart: unless-stopped
+    environment:
+      ALLOW_EMPTY_PASSWORD: "yes"
+    volumes:
+      - redisdata:/data
     ports:
       - 6379:6379
+    command:
+      [
+        "redis-server",
+        "--save",
+        "60",
+        "1",
+        "--loglevel",
+        "warning"
+      ]
+    networks:
+      - airtable-ser-network
+    healthcheck:
+      test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
+      timeout: 1m
+      interval: 10m
+      retries: 5
+      start_period: 1m
 
+networks:
+  airtable-ser-network:
+    driver: bridge
+
+volumes:
+  node_modules:
+  redisdata:

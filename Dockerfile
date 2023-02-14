@@ -1,16 +1,20 @@
 # syntax=docker/dockerfile:1
 
-FROM node:18.14.0-alpine
+FROM node:18.14.0-alpine AS deps
+
+WORKDIR /app
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
+
+FROM node:18.14.0-alpine AS runner
 
 # Improve alpine container
 RUN apk add --no-cache libc6-compat
 
 WORKDIR /app
 
-COPY package.json yarn.lock ./
+RUN chown -R node:node /app
+USER node
 
-RUN yarn install --frozen-lockfile
-
-COPY . .
-
-CMD ['yarn', 'dev']
+COPY --from=deps --chown=node:node /app/node_modules ./node_modules
+COPY --chown=node:node . .
