@@ -3,7 +3,7 @@
 // Module dependencies
 const app = require('../index');
 const http = require('http');
-const debug = require('debug')('nodejs-cache-circle-ci');
+const Logger = require('../logger')
 const redisClient = require('../redisClient');
 
 redisClient.connect().then(() => {
@@ -82,6 +82,6 @@ redisClient.connect().then(() => {
 		const addr = server.address();
 		const bind =
 			typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
-		debug('Listening on ' + bind);
+		Logger.debug('Listening on ' + bind);
 	}
 });

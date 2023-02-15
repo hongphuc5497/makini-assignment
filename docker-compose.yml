@@ -10,6 +10,7 @@ services:
     environment:
       NODE_ENV: development
       REDIS_URL: redis://redis:6379
+      NODE_DEBUG: bull
     ports:
       - 4000:4000
     expose:
