@@ -1,0 +1,21 @@
+extends _layout
+
+block content
+  h2 Table: #{tableName}
+  br
+  ul
+    for record in records
+      li Number: #{record.number}
+        ul
+          li parents
+            ul
+              for p in record.parents
+                li= p
+          li children
+            ul
+              for c in record.children
+                li= c
+          li services
+            ul
+              for s in record.services
+                li= s

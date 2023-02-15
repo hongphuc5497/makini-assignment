@@ -87,6 +87,16 @@ Tables
 
     - `http://localhost:4000/:tableName/:recordId`
 
-  - Implement caching for each individual table
+  - Implement caching for each individual tables
 
-- ...
+  - Implement background job to fetch records from other tables when rendering current table
+
+- Implement following views on UI:
+
+  - Hierarchy view - output models in a tree structure, based on their parent-child relations
+
+  - Drawings view and drawing output - list of drawings and page to view models assigned to a drawing
+
+    - 
+
+  - Service planner - display list of dates when services can be done based on schedule in DB and current date as starting poing

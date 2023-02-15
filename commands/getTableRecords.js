@@ -39,7 +39,7 @@ const getTableRecordsWithRecursion = async (
 			);
 		}
 
-		redisClient.set(`base:tables:${tableName}`, JSON.stringify(tempRecords));
+		await redisClient.set(`base:tables:${tableName}`, JSON.stringify(tempRecords));
 
 		return tempRecords;
 	} catch (err) {
@@ -63,7 +63,7 @@ const getTableRecordsWithWhileLoop = async (tableName) => {
 			offset = response.data.offset;
 		} while (offset);
 
-		redisClient.set(`base:tables:${tableName}`, JSON.stringify(records));
+		await redisClient.set(`base:tables:${tableName}`, JSON.stringify(records));
 
 		return records;
 	} catch (err) {

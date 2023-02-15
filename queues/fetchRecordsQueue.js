@@ -16,7 +16,7 @@ fetchRecordsQueue.process('fetch', async (job) => {
 		let isCache = false;
 		let records;
 
-		const cachedResult = await redisClient.get(tableName);
+		const cachedResult = await redisClient.get(`base:tables:${tableName}`);
 		if (cachedResult) {
 			records = JSON.parse(cachedResult);
 			isCache = true;
