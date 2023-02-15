@@ -8,7 +8,7 @@
 		"email": "hongphuc.dthp@gmail.com"
 	},
 	"scripts": {
-		"start": "nodemon ./bin/www",
+		"start": "nodemon --max-old-space-size=4096 ./bin/www",
 		"test": "jest",
 		"test:watch": "yarn run test -- --watch"
 	},

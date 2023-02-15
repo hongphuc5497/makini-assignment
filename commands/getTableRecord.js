@@ -10,9 +10,9 @@ module.exports = async (tableName, recordId) => {
 			records = JSON.parse(table);
 		} else {
 			records = await getTableRecordsCommand(tableName);
-    }
+		}
 
-    const record = records.find(item => item.id == recordId)
+		const record = records.find((item) => item.id == recordId);
 
 		return record;
 	} catch (err) {
